@@ -15,6 +15,11 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Authentication provider for issuing access token in exchange for refresh token.
+ * <p>
+ * Refresh token rotation always applied.
+ */
 @Component
 @RequiredArgsConstructor
 public class RefreshTokenAuthenticationProvider implements AuthenticationProvider {
