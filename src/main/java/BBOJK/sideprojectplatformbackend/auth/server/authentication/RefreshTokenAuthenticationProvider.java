@@ -13,6 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -22,17 +23,22 @@ public class RefreshTokenAuthenticationProvider implements AuthenticationProvide
     private final RefreshTokenGenerator refreshTokenGenerator;
 
     @Override
+    public boolean supports(Class<?> authentication) {
+        return RefreshTokenAuthenticationToken.class.isAssignableFrom(authentication);
+    }
+
+    @Override
     public Authentication authenticate(
             Authentication authentication) throws AuthenticationException {
         TokenAuthorization tokenAuthorization = getAuthorization(authentication);
 
-        Jwt jwt = jwtGenerator.generateTo(tokenAuthorization.getPrincipalName(), Collections.emptyMap());
-        RefreshToken refreshToken = refreshTokenGenerator.generate();
+        Map<String, String> additionalClaims = Collections.emptyMap();
+        Jwt jwt = jwtGenerator.generateTo(tokenAuthorization.getPrincipalName(), additionalClaims);
 
-        tokenAuthorization = new TokenAuthorization(authentication.getName(), refreshToken);
-        authorizationService.save(tokenAuthorization);
+        RefreshToken refreshToken = rotateRefreshToken(tokenAuthorization);
 
-        return new AccessTokenAuthenticationToken(tokenAuthorization.getPrincipalName(),
+        return new AccessTokenAuthenticationToken(
+                tokenAuthorization.getPrincipalName(),
                 jwt,
                 refreshToken);
     }
@@ -45,8 +51,11 @@ public class RefreshTokenAuthenticationProvider implements AuthenticationProvide
                 .orElseThrow(() -> new UserNotFoundException("No user for the given refresh token."));
     }
 
-    @Override
-    public boolean supports(Class<?> authentication) {
-        return RefreshTokenAuthenticationToken.class.isAssignableFrom(authentication);
+    private RefreshToken rotateRefreshToken(TokenAuthorization tokenAuthorization) {
+        RefreshToken refreshToken = refreshTokenGenerator.generate();
+        TokenAuthorization.Builder authorizationBuilder = TokenAuthorization.from(tokenAuthorization);
+        authorizationBuilder.refreshToken(refreshToken);
+        authorizationService.save(authorizationBuilder.build());
+        return refreshToken;
     }
 }

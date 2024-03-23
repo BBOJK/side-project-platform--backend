@@ -6,8 +6,18 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+
+/**
+ * an entity for storing information related to token authorizations
+ * such as:
+ * <ul>
+ *     <li>refresh token for the user and its expiration time</li>
+ *     <li>scopes for the user</li>
+ * </ul>
+ *
+ */
 @Getter
-@Builder
+@Builder(builderClassName = "Builder", builderMethodName = "from")
 public class TokenAuthorization {
     private String id;
     private String principalName;
@@ -23,10 +33,10 @@ public class TokenAuthorization {
         this.refreshToken = refreshToken;
     }
 
-    public static TokenAuthorizationBuilder builder(TokenAuthorization from) {
-        return new TokenAuthorizationBuilder()
-                .id(from.getId())
-                .principalName(from.getPrincipalName())
-                .refreshToken(from.getRefreshToken());
+    public static Builder from(TokenAuthorization authorization) {
+        return new Builder()
+                .id(authorization.getId())
+                .principalName(authorization.getPrincipalName())
+                .refreshToken(authorization.getRefreshToken());
     }
 }
