@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.authentication;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.refresh;
 
 import lombok.Getter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;

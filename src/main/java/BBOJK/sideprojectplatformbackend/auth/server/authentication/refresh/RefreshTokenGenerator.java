@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.refresh;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.refresh;
 
 import bbojk.sideprojectplatformbackend.auth.server.TokenExpirationTimer;
 import lombok.RequiredArgsConstructor;

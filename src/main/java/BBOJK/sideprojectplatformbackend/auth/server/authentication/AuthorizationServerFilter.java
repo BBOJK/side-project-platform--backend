@@ -1,8 +1,9 @@
 package bbojk.sideprojectplatformbackend.auth.server.authentication;
 
-import bbojk.sideprojectplatformbackend.auth.server.jwt.Jwt;
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.form.UsernamePasswordAuthenticationConverter;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.Jwt;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.formlogin.UsernamePasswordAuthenticationConverter;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenAuthenticationConverter;
 import bbojk.sideprojectplatformbackend.auth.server.http.AccessTokenResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,16 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Core filter for token issue of authorization server.
+ * <p>
+ * Accepts form login and refresh token login request, responding with access token and refresh token for the authenticated user.
+ * <p>
+ * This filter's {@link AuthenticationManager#authenticate(Authentication)} must return
+ * {@link AccessTokenAuthenticationToken} as a result {@link Authentication}.
+ *
+ * @see AccessTokenAuthenticationToken
+ */
 public class AuthorizationServerFilter extends ConvertedAuthenticationProcessingFilter {
     private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER =
             new AntPathRequestMatcher("/token", HttpMethod.POST.name());

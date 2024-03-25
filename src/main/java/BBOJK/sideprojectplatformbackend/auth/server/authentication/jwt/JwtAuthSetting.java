@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.jwt;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.jwt;
 
 import com.nimbusds.jose.JWSAlgorithm;
 

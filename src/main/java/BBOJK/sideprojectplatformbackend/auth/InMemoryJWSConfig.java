@@ -1,6 +1,6 @@
 package bbojk.sideprojectplatformbackend.auth;
 
-import bbojk.sideprojectplatformbackend.auth.server.jwt.JwtAuthSetting;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.JwtAuthSetting;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.jwk.RSAKey;

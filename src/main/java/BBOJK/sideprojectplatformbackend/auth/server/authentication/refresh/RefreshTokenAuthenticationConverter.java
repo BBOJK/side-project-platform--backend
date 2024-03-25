@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.authentication;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.refresh;
 
 import bbojk.sideprojectplatformbackend.auth.server.AccessTokenParameterNames;
 import jakarta.servlet.http.HttpServletRequest;

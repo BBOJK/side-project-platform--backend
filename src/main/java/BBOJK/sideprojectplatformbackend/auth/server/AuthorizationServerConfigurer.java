@@ -2,12 +2,12 @@ package bbojk.sideprojectplatformbackend.auth.server;
 
 import bbojk.sideprojectplatformbackend.auth.server.authentication.AuthorizationServerFilter;
 import bbojk.sideprojectplatformbackend.auth.server.authentication.ConvertedAuthenticationProcessingFilter;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.RefreshTokenAuthenticationProvider;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.form.UsernamePasswordTokenAuthenticationProvider;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenAuthenticationProvider;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.formlogin.UsernamePasswordTokenAuthenticationProvider;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorizationService;
 import bbojk.sideprojectplatformbackend.auth.server.http.AccessTokenResponse;
-import bbojk.sideprojectplatformbackend.auth.server.jwt.JwtGenerator;
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshTokenGenerator;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.JwtGenerator;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.HttpMessageConverter;

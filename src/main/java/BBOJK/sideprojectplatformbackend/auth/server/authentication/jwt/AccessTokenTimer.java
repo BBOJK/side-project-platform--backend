@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.jwt;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.jwt;
 
 import bbojk.sideprojectplatformbackend.auth.server.AbstractTokenExpirationTimer;
 import org.springframework.stereotype.Component;

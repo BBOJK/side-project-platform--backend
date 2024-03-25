@@ -1,7 +1,7 @@
 package bbojk.sideprojectplatformbackend.auth.server.http;
 
-import bbojk.sideprojectplatformbackend.auth.server.jwt.Jwt;
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.Jwt;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshToken;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

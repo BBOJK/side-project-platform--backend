@@ -1,11 +1,11 @@
-package bbojk.sideprojectplatformbackend.auth.server.authentication;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.refresh;
 
-import bbojk.sideprojectplatformbackend.auth.server.jwt.Jwt;
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.AccessTokenAuthenticationToken;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.UserNotFoundException;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.Jwt;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorization;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorizationService;
-import bbojk.sideprojectplatformbackend.auth.server.jwt.JwtGenerator;
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshTokenGenerator;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.JwtGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;

@@ -1,6 +1,6 @@
 package bbojk.sideprojectplatformbackend.auth.server.authorization;
 
-import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshToken;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 
 /**
- * an entity for storing information related to token authorizations
+ * An entity for storing information related to token authorizations
  * such as:
  * <ul>
  *     <li>refresh token for the user and its expiration time</li>
