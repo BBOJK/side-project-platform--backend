@@ -1,7 +1,7 @@
 package bbojk.sideprojectplatformbackend.auth.server.http.converter;
 
-import bbojk.sideprojectplatformbackend.auth.Jwt;
-import bbojk.sideprojectplatformbackend.auth.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.jwt.Jwt;
+import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
 import bbojk.sideprojectplatformbackend.auth.server.AccessTokenParameterNames;
 import bbojk.sideprojectplatformbackend.auth.server.http.AccessTokenResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;

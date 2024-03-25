@@ -1,6 +1,5 @@
 package bbojk.sideprojectplatformbackend.auth.server;
 
-import bbojk.sideprojectplatformbackend.auth.server.authentication.AuthorizationServerConfigurer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

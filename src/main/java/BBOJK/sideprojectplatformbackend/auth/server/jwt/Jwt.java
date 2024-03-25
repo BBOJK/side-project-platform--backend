@@ -1,4 +1,6 @@
-package bbojk.sideprojectplatformbackend.auth;
+package bbojk.sideprojectplatformbackend.auth.server.jwt;
+
+import bbojk.sideprojectplatformbackend.auth.server.AbstractToken;
 
 import java.time.Instant;
 

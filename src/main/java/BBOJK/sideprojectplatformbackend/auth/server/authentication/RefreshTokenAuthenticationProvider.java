@@ -1,7 +1,7 @@
 package bbojk.sideprojectplatformbackend.auth.server.authentication;
 
-import bbojk.sideprojectplatformbackend.auth.Jwt;
-import bbojk.sideprojectplatformbackend.auth.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.jwt.Jwt;
+import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorization;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorizationService;
 import bbojk.sideprojectplatformbackend.auth.server.jwt.JwtGenerator;

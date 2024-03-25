@@ -1,6 +1,5 @@
 package bbojk.sideprojectplatformbackend.auth.server.refresh;
 
-import bbojk.sideprojectplatformbackend.auth.RefreshToken;
 import bbojk.sideprojectplatformbackend.auth.server.TokenExpirationTimer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

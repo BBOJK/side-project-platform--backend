@@ -1,6 +1,6 @@
 package bbojk.sideprojectplatformbackend.auth.server.authorization;
 
-import bbojk.sideprojectplatformbackend.auth.RefreshToken;
+import bbojk.sideprojectplatformbackend.auth.server.refresh.RefreshToken;
 import lombok.Builder;
 import lombok.Getter;
 

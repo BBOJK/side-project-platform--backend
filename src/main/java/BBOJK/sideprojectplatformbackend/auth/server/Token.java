@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth;
+package bbojk.sideprojectplatformbackend.auth.server;
 
 import java.time.Instant;
 
