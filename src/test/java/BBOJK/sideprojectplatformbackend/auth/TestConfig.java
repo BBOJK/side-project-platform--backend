@@ -1,8 +1,8 @@
-package bbojk.sideprojectplatformbackend.auth.server;
+package bbojk.sideprojectplatformbackend.auth;
 
-import bbojk.sideprojectplatformbackend.auth.TestUserConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,10 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
+@Profile("test")
 public class TestConfig {
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService testUserDetailsService() {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(TestUserConstant.TEST_PASSWORD);
         UserDetails userDetails = User.withUsername(TestUserConstant.TEST_USERNAME)

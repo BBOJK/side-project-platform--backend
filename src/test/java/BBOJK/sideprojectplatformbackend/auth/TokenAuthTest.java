@@ -1,6 +1,6 @@
-package bbojk.sideprojectplatformbackend.auth.server;
+package bbojk.sideprojectplatformbackend.auth;
 
-import bbojk.sideprojectplatformbackend.auth.TestUserConstant;
+import bbojk.sideprojectplatformbackend.auth.server.AccessTokenParameterNames;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -16,18 +16,20 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(TestConfig.class)
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class TokenIssueTest {
+public class TokenAuthTest {
+    private static String accessToken;
+    private static String refreshToken;
     @Autowired
     MockMvc mvc;
-    private static String refreshToken;
 
     @Test
     @Order(0)
@@ -39,7 +41,10 @@ public class TokenIssueTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        refreshToken = JsonPath.read(mvcResult.getResponse().getContentAsString(),
+        String rawJsonResult = mvcResult.getResponse().getContentAsString();
+        accessToken = JsonPath.read(rawJsonResult,
+                "$." + AccessTokenParameterNames.ACCESS_TOKEN);
+        refreshToken = JsonPath.read(rawJsonResult,
                 "$." + AccessTokenParameterNames.REFRESH_TOKEN);
         assertThat(refreshToken).isNotNull();
     }
@@ -64,6 +69,16 @@ public class TokenIssueTest {
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                         .param(AccessTokenParameterNames.REFRESH_TOKEN, refreshToken))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @Order(3)
+    @Description("Try access to resource /test with access token issued at @Test(0)")
+    void accessResource_withAccessToken() throws Exception {
+        assertThat(accessToken).isNotNull();
+        mvc.perform(get("/test")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
+                .andExpect(status().isOk());
     }
 
 }

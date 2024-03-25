@@ -1,12 +1,12 @@
-package bbojk.sideprojectplatformbackend;
+package bbojk.sideprojectplatformbackend.auth;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
-    @GetMapping("/")
+    @GetMapping("/test")
     public String index() {
-        return "Hello world!";
+        return "Hello test world!";
     }
 }
