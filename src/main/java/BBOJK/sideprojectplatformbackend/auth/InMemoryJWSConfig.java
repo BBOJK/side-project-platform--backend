@@ -29,7 +29,7 @@ public class InMemoryJWSConfig {
     }
 
     @Bean
-    public JWSKeySelector<? extends SecurityContext> jwsKeySelector() throws JOSEException {
+    public JWSKeySelector<SecurityContext> jwsKeySelector() throws JOSEException {
         return new SingleKeyJWSKeySelector<>(JwtAuthSetting.SIGNING_ALGORITHM, rsaKey.toPublicKey());
     }
 }
