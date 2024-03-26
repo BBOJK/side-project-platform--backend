@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -35,7 +34,8 @@ public class ConvertedAuthenticationProcessingFilter extends AbstractAuthenticat
                                                 HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         Authentication authentication = authenticationConverter.convert(request);
         if (authentication == null) {
-            throw new AuthenticationServiceException("Given authentication request is not supported.");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Given authentication request is not supported.");
+            return null;
         }
 
         return getAuthenticationManager().authenticate(authentication);

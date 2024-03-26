@@ -50,6 +50,14 @@ public class TokenAuthTest {
     }
 
     @Test
+    void respondWith400Error_ifAuthFormatNotSupported() throws Exception {
+        mvc.perform(post("/token")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("not_supported", "OMG"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     @Order(1)
     @Description("Use refresh token issued during form login test to get another access token.")
     void issueAccessTokenSuccessfully_withRefreshToken() throws Exception {
