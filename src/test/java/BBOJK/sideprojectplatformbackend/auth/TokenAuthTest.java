@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -35,15 +36,18 @@ public class TokenAuthTest {
     @Order(0)
     void issueAccessTokenSuccessfully_withFormLogin() throws Exception {
         MvcResult mvcResult = mvc.perform(post("/token")
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("username", TestUserConstant.TEST_USERNAME)
                         .param("password", TestUserConstant.TEST_PASSWORD))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String rawJsonResult = mvcResult.getResponse().getContentAsString();
+
         accessToken = JsonPath.read(rawJsonResult,
                 "$." + AccessTokenParameterNames.ACCESS_TOKEN);
+        assertThat(accessToken).isNotNull();
+
         refreshToken = JsonPath.read(rawJsonResult,
                 "$." + AccessTokenParameterNames.REFRESH_TOKEN);
         assertThat(refreshToken).isNotNull();
@@ -63,7 +67,7 @@ public class TokenAuthTest {
     void issueAccessTokenSuccessfully_withRefreshToken() throws Exception {
         assertThat(refreshToken).isNotNull();
         mvc.perform(post("/token")
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param(AccessTokenParameterNames.REFRESH_TOKEN, refreshToken))
                 .andExpect(status().isOk());
     }
@@ -74,7 +78,7 @@ public class TokenAuthTest {
     void failTokenIssue_whenRefreshTokenIsReused() throws Exception {
         assertThat(refreshToken).isNotNull();
         mvc.perform(post("/token")
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param(AccessTokenParameterNames.REFRESH_TOKEN, refreshToken))
                 .andExpect(status().isUnauthorized());
     }
