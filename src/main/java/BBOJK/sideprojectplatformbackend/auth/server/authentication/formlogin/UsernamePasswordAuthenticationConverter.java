@@ -1,4 +1,4 @@
-package bbojk.sideprojectplatformbackend.auth.server.authentication.form;
+package bbojk.sideprojectplatformbackend.auth.server.authentication.formlogin;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
