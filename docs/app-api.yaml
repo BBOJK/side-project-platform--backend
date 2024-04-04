@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: BBOJK api
+  description: BBOJK api
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080'
+paths:
+  /token:
+    post:
+      description: Auth token issuing endpoint
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                      username:
+                        type: string
+                      password:
+                        type: string
+                - $ref: '#/components/schemas/RefreshToken'
+            examples:
+              formLogin:
+                summary: form login
+                value:
+                  username: test
+                  password: password
+              refreshTokenLogin:
+                summary: refresh token login
+                value:
+                  refresh_token: KyNJwduZTGVS2LP3EXKiAKoWckQ2piUI6b7ll6yrHiKlt0TqCkC6pZ2ZaenndRYzH06TiUnqp7myHYFYyK6AyfW8RRxmFLmbXgoAVwXYA3DV1OwIuo_K5voDYxn8lHe_
+
+
+      responses:
+        200:
+          description: Issue Token
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                    - $ref: '#/components/schemas/AccessToken'
+                    - type: object
+                      properties:
+                        expires_in:
+                          type: integer
+                          example: 3600
+                    - $ref: '#/components/schemas/RefreshToken'
+
+
+components:
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJiYm9qayIsImF1ZCI6InRlc3QiLCJleHAiOjE3MTIyMjE2OTgsImlhdCI6MTcxMjIxOTg5OH0.IKffD2UsP6KvTBl1Imgl84W0upvQy5uFXPAOeV2pT9lCVOrjkfJbHShnFYj0DxqzWx0rXvd_kNi9YdhzU5d5dPk02gM8tZP-xDTC1rqN8C1sQBq10SXa-sm8XaJXVBqYvkWcd6Xlgd5UTM-n-PPt_jZJcYyh0jTbuZN0gZThFOTGI_Sc6SK6zCepMWN4M6GHE5Z9KPOdeQo3H6bih7W51KQ8lfT86RWewjLU09iMuoKiZojxOIXIrrBKwXttV8qhTUu4-sHBRhoEYyuq6RcYQzE_QXHApfwr0cr6T-odQ5-FxmY90KrJC1HBvrGugSlHFFwKgZLwz_Usgr8y3JAwHg
+    RefreshToken:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          example: KyNJwduZTGVS2LP3EXKiAKoWckQ2piUI6b7ll6yrHiKlt0TqCkC6pZ2ZaenndRYzH06TiUnqp7myHYFYyK6AyfW8RRxmFLmbXgoAVwXYA3DV1OwIuo_K5voDYxn8lHe_
