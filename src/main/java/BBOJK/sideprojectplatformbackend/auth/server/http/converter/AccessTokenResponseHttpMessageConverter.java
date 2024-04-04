@@ -36,13 +36,13 @@ public class AccessTokenResponseHttpMessageConverter
     }
 
     @Override
-    protected boolean supports(@NonNull Class<?> clazz) {
+    protected boolean supports(Class<?> clazz) {
         return AccessTokenResponse.class.isAssignableFrom(clazz);
     }
 
     @Override
     protected AccessTokenResponse readInternal(Class<? extends AccessTokenResponse> clazz,
-                                               HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+                                               HttpInputMessage inputMessage) throws HttpMessageNotReadableException {
         throw new UnsupportedOperationException("reading is not supported in the AccessTokenResponseHttpMessageConverter");
     }
 
@@ -52,9 +52,9 @@ public class AccessTokenResponseHttpMessageConverter
         Jwt jwt = accessTokenResponse.getJwt();
         long expiresIn = ChronoUnit.SECONDS.between(jwt.getIssuedAt(), jwt.getExpiresAt());
         RefreshToken refreshToken = accessTokenResponse.getRefreshToken();
-        Map<String, String> outputMap = Map.of(
+        Map<String, Object> outputMap = Map.of(
                 AccessTokenParameterNames.ACCESS_TOKEN, jwt.getValue(),
-                AccessTokenParameterNames.EXPIRES_IN, String.valueOf(expiresIn),
+                AccessTokenParameterNames.EXPIRES_IN, expiresIn,
                 AccessTokenParameterNames.REFRESH_TOKEN, refreshToken.getValue()
         );
 
