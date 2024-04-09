@@ -1,0 +1,22 @@
+= BBOJK Api
+:doctype: book
+:toc: left
+
+== Auth
+=== 토큰 발급 - form login
+operation::form-login-token-issue[snippets='http-request,form-parameters,http-response,response-fields']
+
+'''
+
+=== 토큰 발급 - refresh token
+operation::refresh-token-token-issue[snippets='http-request,form-parameters,http-response,response-fields']
+
+'''
+
+=== 리소스 접근
+
+CAUTION: /test로의 접근은 동작하지 않습니다. 리소스 접근 예시용 예제이니 참고 바랍니다.
+
+operation::access-resource-with-token[snippets='http-request,request-headers,http-response']
+
+

@@ -13,6 +13,8 @@ java {
 }
 
 jar {
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
 	manifest {
 		attributes "Main-Class": "bbojk.sideprojectplatformbackend.SideProjectPlatformBackendApplication"
 	}
@@ -23,10 +25,11 @@ jar {
 }
 
 configurations {
-	asciidoctorExt
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+
+	asciidoctorExt
 }
 
 repositories {
@@ -35,6 +38,7 @@ repositories {
 
 ext {
 	snippetsDir = file('build/generated-snippets')
+	docPath = file("src/main/resources/static/docs")
 }
 
 test {
@@ -46,6 +50,22 @@ asciidoctor {
 	inputs.dir snippetsDir
 	configurations 'asciidoctorExt'
 	dependsOn test
+
+	delete(docPath)
+}
+
+tasks.register('copyApiToResources', Copy) {
+	dependsOn asciidoctor
+	from asciidoctor.outputDir
+	into docPath
+}
+
+bootJar {
+	dependsOn asciidoctor
+
+	from (asciidoctor.outputDir) {
+		into 'static/docs'
+	}
 }
 
 dependencies {
@@ -64,3 +84,5 @@ dependencies {
 	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
+
+
