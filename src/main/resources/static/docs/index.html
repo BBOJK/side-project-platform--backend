@@ -435,6 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -457,15 +458,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_auth">Auth</h2>
+<h2 id="_auth"><a class="link" href="#_auth">Auth</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_토큰_발급_form_login">토큰 발급 - form login</h3>
+<h3 id="_토큰_발급_form_login"><a class="link" href="#_토큰_발급_form_login">토큰 발급 - form login</a></h3>
 <div class="sect3">
-<h4 id="_토큰_발급_form_login_http_request">HTTP request</h4>
+<h4 id="_토큰_발급_form_login_http_request"><a class="link" href="#_토큰_발급_form_login_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /token HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: docs.api.com
 Content-Length: 31
@@ -475,7 +476,7 @@ username=test&amp;password=password</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_form_login_form_parameters">Form parameters</h4>
+<h4 id="_토큰_발급_form_login_form_parameters"><a class="link" href="#_토큰_발급_form_login_form_parameters">Form parameters</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -500,10 +501,10 @@ username=test&amp;password=password</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_form_login_http_response">HTTP response</h4>
+<h4 id="_토큰_발급_form_login_http_response"><a class="link" href="#_토큰_발급_form_login_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
@@ -525,7 +526,7 @@ Content-Length: 651
 </div>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_form_login_response_fields">Response fields</h4>
+<h4 id="_토큰_발급_form_login_response_fields"><a class="link" href="#_토큰_발급_form_login_response_fields">Response fields</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -561,12 +562,12 @@ Content-Length: 651
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_토큰_발급_refresh_token">토큰 발급 - refresh token</h3>
+<h3 id="_토큰_발급_refresh_token"><a class="link" href="#_토큰_발급_refresh_token">토큰 발급 - refresh token</a></h3>
 <div class="sect3">
-<h4 id="_토큰_발급_refresh_token_http_request">HTTP request</h4>
+<h4 id="_토큰_발급_refresh_token_http_request"><a class="link" href="#_토큰_발급_refresh_token_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /token HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: docs.api.com
 Content-Length: 142
@@ -576,7 +577,7 @@ refresh_token=dXe4jzVu_9us6ED0X2mGsqjXAAYsuLr6kZjOTxzyhJ1GRSpfkf2eQ_JSU0AUOuUCHc
 </div>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_refresh_token_form_parameters">Form parameters</h4>
+<h4 id="_토큰_발급_refresh_token_form_parameters"><a class="link" href="#_토큰_발급_refresh_token_form_parameters">Form parameters</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -597,10 +598,10 @@ refresh_token=dXe4jzVu_9us6ED0X2mGsqjXAAYsuLr6kZjOTxzyhJ1GRSpfkf2eQ_JSU0AUOuUCHc
 </table>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_refresh_token_http_response">HTTP response</h4>
+<h4 id="_토큰_발급_refresh_token_http_response"><a class="link" href="#_토큰_발급_refresh_token_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
@@ -622,7 +623,7 @@ Content-Length: 651
 </div>
 </div>
 <div class="sect3">
-<h4 id="_토큰_발급_refresh_token_response_fields">Response fields</h4>
+<h4 id="_토큰_발급_refresh_token_response_fields"><a class="link" href="#_토큰_발급_refresh_token_response_fields">Response fields</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -658,7 +659,7 @@ Content-Length: 651
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_리소스_접근">리소스 접근</h3>
+<h3 id="_리소스_접근"><a class="link" href="#_리소스_접근">리소스 접근</a></h3>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -672,17 +673,17 @@ Content-Length: 651
 </table>
 </div>
 <div class="sect3">
-<h4 id="_리소스_접근_http_request">HTTP request</h4>
+<h4 id="_리소스_접근_http_request"><a class="link" href="#_리소스_접근_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /test HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /test HTTP/1.1
 Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJiYm9qayIsImF1ZCI6InRlc3QiLCJleHAiOjE3MTI2NzQ2NTYsImlhdCI6MTcxMjY3Mjg1Nn0.Ybma84u0tXyGuVhlfE_l2cOB2va1S_coLOdZLMoEpcqb48H3yLPX-0goHLcPbZYoFpJ0SJLXuV2YoeoEL0ARk5elEOQ0e08dqWvb084udWFwMPJ6kVS6nRX4OVcGuADIV_0t0VSXLi-8Wytp6eFyar-y_34f2RQIyR1F4K5XowpJ-AJYrMZXVkiqT7s71v-t4k71qguVNrKJ1Ow39njTNsht4RjywFxDly_4o6lF71ZKeiMtOajC5_IL5xAtngt0NuMOi7MvNtWmlXO6KKo2DM_zG_VBwAUzokl_Gv4qAIX7Mb5BWZXY713zb2fBFLggnLFpwZH3NfB-3HeMYsm7ZA
 Host: docs.api.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_리소스_접근_request_headers">Request headers</h4>
+<h4 id="_리소스_접근_request_headers"><a class="link" href="#_리소스_접근_request_headers">Request headers</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -703,10 +704,10 @@ Host: docs.api.com</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_리소스_접근_http_response">HTTP response</h4>
+<h4 id="_리소스_접근_http_response"><a class="link" href="#_리소스_접근_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
@@ -730,8 +731,15 @@ Hello test world!</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2024-04-09 23:39:57 +0900
+Last updated 2024-04-09 23:55:05 +0900
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>

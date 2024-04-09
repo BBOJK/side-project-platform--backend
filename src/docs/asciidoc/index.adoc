@@ -1,6 +1,8 @@
 = BBOJK Api
 :doctype: book
+:source-highlighter: highlightjs
 :toc: left
+:sectlinks:
 
 == Auth
 === 토큰 발급 - form login
