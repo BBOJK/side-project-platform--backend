@@ -1,88 +1,59 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.3'
-	id 'io.spring.dependency-management' version '1.1.4'
-	id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id 'java'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id 'com.epages.restdocs-api-spec' version '0.18.2'
 }
 
 group = 'BBOJK'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '21'
+    sourceCompatibility = '21'
 }
 
 jar {
-	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 
-	manifest {
-		attributes "Main-Class": "bbojk.sideprojectplatformbackend.SideProjectPlatformBackendApplication"
-	}
+    manifest {
+        attributes "Main-Class": "bbojk.sideprojectplatformbackend.SideProjectPlatformBackendApplication"
+    }
 
-	from {
-		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-	}
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-
-	asciidoctorExt
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
-}
-
-ext {
-	snippetsDir = file('build/generated-snippets')
-	docPath = file("src/main/resources/static/docs")
+    mavenCentral()
 }
 
 test {
-	useJUnitPlatform()
-	outputs.dir snippetsDir
-}
-
-asciidoctor {
-	inputs.dir snippetsDir
-	configurations 'asciidoctorExt'
-	dependsOn test
-
-	delete(docPath)
-}
-
-tasks.register('copyApiToResources', Copy) {
-	dependsOn asciidoctor
-	from asciidoctor.outputDir
-	into docPath
-}
-
-bootJar {
-	dependsOn asciidoctor
-
-	from (asciidoctor.outputDir) {
-		into 'static/docs'
-	}
+    useJUnitPlatform()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 
-	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.18.2'
 }
 
-
+apply from : 'rest-doc.gradle'

@@ -19,16 +19,16 @@ import java.io.UnsupportedEncodingException;
 
 import static bbojk.sideprojectplatformbackend.ApiDocumentUtils.preprocessDocumentRequest;
 import static bbojk.sideprojectplatformbackend.ApiDocumentUtils.preprocessDocumentResponse;
+import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.formParameters;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

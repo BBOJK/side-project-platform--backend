@@ -1,0 +1,72 @@
+configurations {
+    asciidoctorExt
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+    staticDirPath = file("src/main/resources/static")
+}
+
+test {
+    outputs.dir snippetsDir
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    dependsOn test
+}
+
+tasks.register('copyApiToResources', Copy) {
+    dependsOn asciidoctor
+    delete "${staticDirPath}/index.html"
+    from asciidoctor.outputDir
+    into staticDirPath
+}
+
+asciidoctor {
+    finalizedBy copyApiToResources
+}
+
+//https://tech.kakaopay.com/post/openapi-documentation/
+tasks.register("copySwaggerToResources", Copy) {
+    dependsOn "openapi3"
+    delete "${staticDirPath}/js/openapi3.yaml"
+    from layout.buildDirectory.file("api-spec/openapi3.yaml")
+    into "${staticDirPath}/js"
+}
+
+bootJar {
+    dependsOn copyApiToResources
+    dependsOn copySwaggerToResources
+
+    from(asciidoctor.outputDir) {
+        into 'static/docs'
+    }
+}
+
+bootRun {
+    dependsOn copyApiToResources
+    dependsOn copySwaggerToResources
+}
+
+dependencies {
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.18.2'
+}
+
+openapi3 {
+    server = 'https://localhost:8080'
+    title = 'My API'
+    description = 'My API description'
+    version = version
+    format = 'yaml'
+}
+
+postman {
+    title = 'My API'
+    version = version
+    baseUrl = 'https://localhost:8080'
+}
+
