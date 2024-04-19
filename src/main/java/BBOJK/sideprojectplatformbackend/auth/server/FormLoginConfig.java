@@ -16,13 +16,13 @@ public class FormLoginConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode("password");
-        UserDetails userDetails = User.withUsername("test")
-                .password(encodedPassword)
-                .build();
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encodedPassword = passwordEncoder.encode("password");
+//        UserDetails userDetails = User.withUsername("test")
+//                .password(encodedPassword)
+//                .build();
+//        return new InMemoryUserDetailsManager(userDetails);
+//    }
 }
