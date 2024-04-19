@@ -21,4 +21,10 @@ CAUTION: /test로의 접근은 동작하지 않습니다. 리소스 접근 예�
 
 operation::access-resource-with-token[snippets='http-request,request-headers,http-response']
 
+...
+
+== User
+
+=== 회원가입 - register
+operation::user-registration-register[]
 
