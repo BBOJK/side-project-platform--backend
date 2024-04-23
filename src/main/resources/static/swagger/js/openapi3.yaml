@@ -1,0 +1,137 @@
+openapi: 3.0.1
+info:
+  title: My API
+  description: My API description
+  version: 1.0.0
+servers:
+- url: https://localhost:8080
+tags: []
+paths:
+  /test:
+    get:
+      tags:
+      - test
+      operationId: access-resource-with-token
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer access token
+        required: true
+        schema:
+          type: string
+        example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJiYm9qayIsImF1ZCI6InRlc3QiLCJleHAiOjE3MTM4ODk2NTYsImlhdCI6MTcxMzg4Nzg1Nn0.OtGCNZWr_lSO8vZD-336coQP5VoNZTvWRURetDKPvV7dCnj4Hbr6_wB6ZYXdQqnEYrwSka1QalJ9X3VbCaEBu3lQ95fSt68ggRUDpddmb8l1KwFdokLpam1TJ-nkS8431kH6tG_WeqwvDz4OY_KrBeepXaN0He1o1uQMLXJLF2c_g9Q8FR8wz_QZsLIeK6mwLX_Kc_UxmSZw37exfM6ujUtdtrv33s35g8WHhMAh--qE732T9J8FIhug1eIUpDV1v9IZaHVhboKsU01KvjQPeFvLCDC5JT_ap4c0eIghAqR-5qXOeC-SHJCqJeFWpTxLPLPF8abIu71VPQKVhU2_ag
+      responses:
+        "200":
+          description: "200"
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/test486549215'
+              examples:
+                access-resource-with-token:
+                  value: Hello test world!
+      security:
+      - bearerAuthJWT: []
+  /token:
+    post:
+      tags:
+      - token
+      operationId: form-login-token-issuerefresh-token-token-issue
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/token-2109115755'
+            examples:
+              form-login-token-issue:
+                value: username=test&password=password
+              refresh-token-token-issue:
+                value: refresh_token=kMudQwbTx2mOOdVfckjk6y7aPq2c4fqzxmRG8BHG2ggpN9lsEWh5D4J-tzOlEw_0QQkX2Wxse3S16Zitn9R8OfbZQrLa5_utAX2-3QJy7W879SzZrLnaSANPTcZ-Gt_Y
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/token1773978478'
+              examples:
+                form-login-token-issue:
+                  value: "{\r\n  \"access_token\" : \"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJiYm9qayIsImF1ZCI6InRlc3QiLCJleHAiOjE3MTM4ODk2NTYsImlhdCI6MTcxMzg4Nzg1Nn0.OtGCNZWr_lSO8vZD-336coQP5VoNZTvWRURetDKPvV7dCnj4Hbr6_wB6ZYXdQqnEYrwSka1QalJ9X3VbCaEBu3lQ95fSt68ggRUDpddmb8l1KwFdokLpam1TJ-nkS8431kH6tG_WeqwvDz4OY_KrBeepXaN0He1o1uQMLXJLF2c_g9Q8FR8wz_QZsLIeK6mwLX_Kc_UxmSZw37exfM6ujUtdtrv33s35g8WHhMAh--qE732T9J8FIhug1eIUpDV1v9IZaHVhboKsU01KvjQPeFvLCDC5JT_ap4c0eIghAqR-5qXOeC-SHJCqJeFWpTxLPLPF8abIu71VPQKVhU2_ag\"\
+                    ,\r\n  \"refresh_token\" : \"kMudQwbTx2mOOdVfckjk6y7aPq2c4fqzxmRG8BHG2ggpN9lsEWh5D4J-tzOlEw_0QQkX2Wxse3S16Zitn9R8OfbZQrLa5_utAX2-3QJy7W879SzZrLnaSANPTcZ-Gt_Y\"\
+                    ,\r\n  \"expires_in\" : 1800\r\n}"
+                refresh-token-token-issue:
+                  value: "{\r\n  \"access_token\" : \"eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJiYm9qayIsImF1ZCI6InRlc3QiLCJleHAiOjE3MTM4ODk2NTYsImlhdCI6MTcxMzg4Nzg1Nn0.OtGCNZWr_lSO8vZD-336coQP5VoNZTvWRURetDKPvV7dCnj4Hbr6_wB6ZYXdQqnEYrwSka1QalJ9X3VbCaEBu3lQ95fSt68ggRUDpddmb8l1KwFdokLpam1TJ-nkS8431kH6tG_WeqwvDz4OY_KrBeepXaN0He1o1uQMLXJLF2c_g9Q8FR8wz_QZsLIeK6mwLX_Kc_UxmSZw37exfM6ujUtdtrv33s35g8WHhMAh--qE732T9J8FIhug1eIUpDV1v9IZaHVhboKsU01KvjQPeFvLCDC5JT_ap4c0eIghAqR-5qXOeC-SHJCqJeFWpTxLPLPF8abIu71VPQKVhU2_ag\"\
+                    ,\r\n  \"refresh_token\" : \"c_-E5GdVfhwHtT0XSAQgdXykQSdy_k3tHQu-bbutMPkaun-3KlSqjRROZj_3skKWsZdLQPSz_sEClea8nZdU1CZHtC77JbK9d5RIH1ROAnl3byO9WqRvgUAxaoJIWybV\"\
+                    ,\r\n  \"expires_in\" : 1800\r\n}"
+  /user/:
+    post:
+      tags:
+      - user
+      operationId: user-registration-register
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/user--267849759'
+            examples:
+              user-registration-register:
+                value: "{\r\n  \"username\" : \"user1\",\r\n  \"password\" : \"password1\"\
+                  \r\n}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user--1916104635'
+              examples:
+                user-registration-register:
+                  value: "{\r\n  \"username\" : \"user1\"\r\n}"
+components:
+  schemas:
+    token1773978478:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: access token
+        refresh_token:
+          type: string
+          description: refresh token
+        expires_in:
+          type: number
+          description: access token의 유효 시간(초)
+    user--267849759:
+      type: object
+      properties:
+        password:
+          type: string
+          description: 유저 비밀번호
+        username:
+          type: string
+          description: 유저 id
+    token-2109115755:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          description: refresh token
+        password:
+          type: string
+          description: 유저 비밀번호
+        username:
+          type: string
+          description: 유저 id
+    test486549215:
+      type: object
+    user--1916104635:
+      type: object
+      properties:
+        username:
+          type: string
+          description: 저장된 유저의 이름
+  securitySchemes:
+    bearerAuthJWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

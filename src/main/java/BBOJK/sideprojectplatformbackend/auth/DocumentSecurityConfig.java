@@ -17,10 +17,7 @@ public class DocumentSecurityConfig {
             new AntPathRequestMatcher("/", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/index.html", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/swagger-ui.html", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/css/**", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/js/**", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/favicon/**", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/openapi3.yaml", HttpMethod.GET.name())
+            new AntPathRequestMatcher("/swagger/**", HttpMethod.GET.name())
     );
 
     @Bean

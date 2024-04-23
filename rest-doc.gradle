@@ -19,7 +19,6 @@ asciidoctor {
 
 tasks.register('copyApiToResources', Copy) {
     dependsOn asciidoctor
-    delete "${staticDirPath}/index.html"
     from asciidoctor.outputDir
     into staticDirPath
 }
@@ -31,9 +30,9 @@ asciidoctor {
 //https://tech.kakaopay.com/post/openapi-documentation/
 tasks.register("copySwaggerToResources", Copy) {
     dependsOn "openapi3"
-    delete "${staticDirPath}/js/openapi3.yaml"
     from layout.buildDirectory.file("api-spec/openapi3.yaml")
-    into "${staticDirPath}/js"
+    //docs/swagger_restdoc_modification_guide
+    into "${staticDirPath}/swagger/js"
 }
 
 bootJar {
