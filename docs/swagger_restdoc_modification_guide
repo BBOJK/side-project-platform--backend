@@ -1,0 +1,5 @@
+# How to change swagger document (openapi3.yaml) location
+
+1. In `rest-doc.gradle`, change the path that openapi3.yaml copied into
+for the task `copySwaggerToResources`
+2. In `static/swagger/js/swagger-initializer.js`, change `url` of `window.ui`
