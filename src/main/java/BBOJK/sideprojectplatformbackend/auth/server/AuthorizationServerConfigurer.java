@@ -2,12 +2,12 @@ package bbojk.sideprojectplatformbackend.auth.server;
 
 import bbojk.sideprojectplatformbackend.auth.server.authentication.AuthorizationServerFilter;
 import bbojk.sideprojectplatformbackend.auth.server.authentication.ConvertedAuthenticationProcessingFilter;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenAuthenticationProvider;
 import bbojk.sideprojectplatformbackend.auth.server.authentication.formlogin.UsernamePasswordTokenAuthenticationProvider;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.JwtGenerator;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenAuthenticationProvider;
+import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenGenerator;
 import bbojk.sideprojectplatformbackend.auth.server.authorization.TokenAuthorizationService;
 import bbojk.sideprojectplatformbackend.auth.server.http.AccessTokenResponse;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.jwt.JwtGenerator;
-import bbojk.sideprojectplatformbackend.auth.server.authentication.refresh.RefreshTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -16,6 +16,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
@@ -30,9 +31,6 @@ public class AuthorizationServerConfigurer
 
     private static final AntPathRequestMatcher ANT_PATH_REQUEST_MATCHER =
             new AntPathRequestMatcher("/token", HttpMethod.POST.name());
-
-    private ConvertedAuthenticationProcessingFilter authFilter;
-
     private final List<AuthenticationProvider> providers;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
@@ -40,6 +38,7 @@ public class AuthorizationServerConfigurer
     private final JwtGenerator jwtGenerator;
     private final RefreshTokenGenerator refreshTokenGenerator;
     private final HttpMessageConverter<AccessTokenResponse> accessTokenResponseHttpMessageConverter;
+    private ConvertedAuthenticationProcessingFilter authFilter;
 
 
     @Autowired
@@ -69,7 +68,12 @@ public class AuthorizationServerConfigurer
 
     @Override
     public void configure(HttpSecurity builder) throws Exception {
-        builder.addFilterBefore(postProcess(authFilter), AbstractPreAuthenticatedProcessingFilter.class);
+        builder.addFilterBefore(postProcess(authFilter),
+                AbstractPreAuthenticatedProcessingFilter.class);
+        builder
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
     }
 
     private List<AuthenticationProvider> createProviders() {
